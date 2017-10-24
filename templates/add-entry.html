@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<center><h1>Add a Blog</h1>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% for category,message in messages %}
+        <li class="{{category}}">{{message}}</li>
+    {% endfor %}
+    {% endwith %}
+<hr />  
+<form action='/newpost' method='post'>
+    <label>Add Entry </br>
+        <input type="text" name="title" value="{{entry_title}}" />      
+    </label>
+</br></br>
+    <label>Blog</br>
+        <textarea rows="8" name="body" >{{entry_body}}</textarea>
+    </label>
+</br>
+    <input type="submit" value="Add Blog" />    
+</form>
+</center>
+
+{% endblock %}
