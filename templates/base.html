@@ -1,18 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
-        <title>Blog</title>
+        <title>{{page_title}}</title>
+        <link rel="stylesheet" 
+            href="http://blogz-demo.appspot.com/css/normalize.css" />
+        <link rel="stylesheet"
+            href="http://blogz-demo.appspot.com/css/styles.css" />
         <style>
             .error{
                 color: red;
-            }        
+            }
         </style>
     </head>
-    <body>
-        <a href="/blog">Main Blog Page</a>
-        <a href="/newpost">Add a Blog</a>
-        {% block content %}
 
-        {% endblock %}
-    </body>
+<body>
+    <nav>
+        <ul id="user-account">
+            <li><a href="/login">login</a></li>
+            <li><a href="/logout">logout</a></li>
+        </ul>
+        <ul>
+            <li><a href="/">home</a></li>
+            <li><a href="/blog">all posts</a></li>
+            <li><a href="/blog/newpost">new post</a></li>
+        </ul>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        <ul>
+        {% for category,message in messages %}
+            <li class="{{category}}">{{message}}</li>
+        {% endfor %}
+        </ul>
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
+
+</body>
 </html>
